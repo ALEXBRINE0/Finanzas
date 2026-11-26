@@ -128,3 +128,11 @@ test('transferring to savings cannot consume another envelope after cash loss', 
     state.adjustments.push({delta:-9000});`);
   assert.equal(run('emergencyToTransfer()'), 0);
 });
+test('unreconciled envelopes never recommend voluntary debt payments', () => {
+  const run = app();
+  run(`state.settings.foodDay=0;state.settings.essentialsWeekly=0;state.settings.safetyWeeks=1;
+    state.movements=[{type:'income',amount:10000,date:sd(),alloc:{debt:10000}}];
+    state.adjustments.push({delta:-100});`);
+  assert.equal(run('safePaymentInfo().budgetGap'), -100);
+  assert.equal(run('safePaymentInfo().allowed'), 0);
+});

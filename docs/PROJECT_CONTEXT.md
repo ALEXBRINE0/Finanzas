@@ -20,6 +20,8 @@ El dinero se expresa como enteros en centavos. El almacenamiento mantiene `midin
 
 La suma del reparto de un ingreso equivale exactamente a su importe. Una reserva no cambia caja. La entrega sí cambia caja y reserva una sola vez. Las transferencias internas conservan el dinero total. Antes de transferir emergencia se protegen los demás apartados positivos. La reorganización conserva el ahorro transferido y la ofrenda pendiente, y se rechaza si no hay saldo para ambos.
 
+Si el total de apartados difiere del saldo personal por más de un centavo, se suspenden las sugerencias de abonos voluntarios y se pide revisar la conciliación. No se interpreta como autorización para incumplir pagos mínimos obligatorios.
+
 Las semanas son civiles de lunes a domingo en la zona local del dispositivo, igual que el resto de la aplicación. El domingo mostrado es un recordatorio al abrir la app; no hay tarea en segundo plano ni entrega automática. No se calcula rentabilidad de inversiones, tasas bancarias ni normas tributarias.
 
 ## Seguridad y privacidad

@@ -334,6 +334,8 @@ function safetyPlan(cash,b,date=sd(),foodNew=0){
 }
 function safePaymentInfo(date=sd()){
  const t=totals(),b=envelopeTotals();const result=safetyPlan(t.cash-savingsBalance(),b,date);
+ result.budgetGap=t.cash-Object.values(b).reduce((n,x)=>n+x,0);
+ if(Math.abs(result.budgetGap)>1)result.allowed=0;
  result.staleBanks=bankDebts().filter(x=>x.minimum>0&&x.due&&x.due<date);
  return result;
 }
@@ -365,7 +367,7 @@ function recommendationText(a,mode='home'){
  const coveredBank=p.banks.filter(x=>x.offer>0||(x.extra||0)>0);
  const friendRows=p.friends.map(x=>`<div class="safe-debt-row"><div class="safe-debt-info"><b>${esc(x.name)}</b><span>Debes ${dol(x.amount)}${x.due?' · acordado: '+esc(dateNice(x.due)):''}</span><span class="${x.offer>0?'safe-yes':'muted'}">${x.offer===0?'Aún no hay fondos disponibles':x.complete?'Puedes saldar '+dol(x.offer):'Puedes abonar '+dol(x.offer)+' de forma parcial'}</span></div><span class="tag ${x.complete?'':'orange'}">${x.offer>0?'Prioridad 1':'En espera'}</span></div>`).join('');
  const bankRows=p.banks.map(x=>`<div class="safe-debt-row"><div class="safe-debt-info"><b>${esc(x.name)}</b><span>${x.coverage==='Papa'?'Lo cubre normalmente tu papá':x.coverage==='Yo'?'Lo cubres habitualmente tú':'Responsabilidad compartida'} · saldo ${dol(x.balance)}</span><span>${x.offer>0?'Aporte opcional estimado: '+dol(x.offer+(x.extra||0))+(x.extra?' (incluye '+dol(x.extra)+' adicional)':''):'Sin excedente sugerido para este pago'} · referencia ${dol(x.amount)}</span></div><span class="tag ${x.offer?'blue':'orange'}">${x.offer?'Opcional':'Espera'}</span></div>`).join('');
- const caution=a.staleBanks?.length?`<p class="tip danger-text"><b>Atención:</b> ${a.staleBanks.length} obligación(es) bancaria(s) con fecha vencida registrada. Aunque tu papá las cubra, verifica recargos, acuerdos de pago y efectos en tu historial antes de decidir.</p>`:'';
+ const caution=(Math.abs(a.budgetGap||0)>1?`<p class="tip danger-text">Los apartados y el saldo personal difieren en ${dol(a.budgetGap)}. Revisa y concilia antes de considerar abonos voluntarios. No se evalúa aquí si puedes omitir pagos obligatorios.</p>`:'')+(a.staleBanks?.length?`<p class="tip danger-text"><b>Atención:</b> ${a.staleBanks.length} obligación(es) bancaria(s) con fecha vencida registrada. Aunque tu papá las cubra, verifica recargos, acuerdos de pago y efectos en tu historial antes de decidir.</p>`:'');
  const title=`<div class="hrow"><b>${mode==='home'?'¿Puedo devolver algo sin desajustarme?':'Plan sugerido de pagos'}</b><span class="tag ${a.allowed?'':'orange'}">${dol(a.allowed)}</span></div>`;
  const summary=`<p class="note-line">Conservando <b>${a.weeks} semanas</b> de comida y <b>${a.months} mensualidades</b> de tus servicios, podrías destinar hasta <b>${dol(a.allowed)}</b> del apartado de deudas. Es un límite estimado, no dinero que debas gastar.</p>`;
  const friendFirst=coveredFriend.length?`<p class="notice good"><b>Primero:</b> ${coveredFriend.map(x=>esc(x.name)+' '+dol(x.offer)).join(' · ')}. Registra cada devolución para que la siguiente sugerencia se ajuste.</p>`:
@@ -379,7 +381,7 @@ function recommendationText(a,mode='home'){
 function safePaymentMarkup(mode){return recommendationText(safePaymentInfo(),mode)}
 function compactSafePayment(){
  const v=safePaymentInfo(),p=suggestedPayments(v.allowed),friend=p.friends.find(x=>x.offer>0),bank=p.banks.find(x=>x.offer>0||(x.extra||0)>0);
- const copy=friend?`Puedes devolver <b>${dol(friend.offer)}</b> a ${esc(friend.name)}.`:bank?`Podrías abonar <b>${dol(bank.offer+(bank.extra||0))}</b> a ${esc(bank.name)}.`:'Tus próximos gastos están protegidos antes de sugerir pagos.';
+ const copy=Math.abs(v.budgetGap||0)>1?'Revisa los apartados descuadrados antes de considerar abonos voluntarios.':friend?`Puedes devolver <b>${dol(friend.offer)}</b> a ${esc(friend.name)}.`:bank?`Podrías abonar <b>${dol(bank.offer+(bank.extra||0))}</b> a ${esc(bank.name)}.`:'Tus próximos gastos están protegidos antes de sugerir pagos.';
  return `<div class="compact-pay card"><div class="hrow"><b>Deudas: pago posible</b><strong>${dol(v.allowed)}</strong></div><div class="micro muted">${copy}</div><button class="link" data-go="debts">Ver deudas →</button></div>`
 }
 function allocate(amount,base=zeroBuckets(),options={}){
