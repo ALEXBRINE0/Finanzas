@@ -1,7 +1,7 @@
 # MiDinero — Guía de uso
 
 **Controla tus ingresos, gastos, ahorros, préstamos y pagos compartidos desde el teléfono, sin complicarte.**  
-Manual para usuarios de **MiDinero v3.7**.
+Manual para usuarios de **MiDinero v3.9**.
 
 > Esta guía se refiere a las funciones de uso diario. No necesitas saber programar.
 
@@ -44,7 +44,7 @@ En **Registrar → Recibí dinero**, introduce el monto y la fuente (trabajo, fa
 
 ### 2. Gasté dinero
 
-En **Registrar → Gasté dinero**, escribe el monto y el tipo de gasto. La comida que marques como **Comida en la U** reduce el apartado semanal. Los demás gastos personales disminuyen el apartado de **Salidas y otros gastos** en la v3.7, aunque queden identificados por categoría.
+En **Registrar → Gasté dinero**, escribe el monto y el tipo de gasto. La comida que marques como **Comida en la U** reduce el apartado semanal. Usa **Invité a otras personas** para invitaciones y registra tu comida por separado si un mismo recibo incluye ambas cosas. Los nuevos gastos de **Transporte** y **Otras necesidades planificadas** usan Necesidades; **Ofrenda entregada** usa la reserva de ofrenda. Los demás gastos personales consumen Salidas. Los registros anteriores conservan sus apartados originales.
 
 Puedes registrar un gasto mayor a tu presupuesto: el apartado puede quedar **negativo** para mostrarte cuánto te excediste.
 
@@ -54,14 +54,41 @@ En **Registrar → Pagué una cuota**, elige la obligación, cantidad y quién a
 
 ## Inicio: ¿qué significa cada cantidad?
 
-- **En mi cuenta de uso diario:** saldo que calcula MiDinero fuera de la cuenta de emergencia. Puede incluir dinero reservado para otras obligaciones.
+- **Para salidas esta semana:** el menor entre lo apartado para salidas, el tope semanal restante y el efectivo propio después de proteger los demás apartados y las necesidades semanales sin cubrir. No es una invitación a gastarlo.
+- **Saldo real de mi cuenta diaria:** saldo registrado fuera de emergencia, incluidos los Yappy de grupo que aún estén dentro. La conciliación usa esta cifra.
+- **Ofrenda:** reserva pendiente de entregar, no dinero libre.
+- **Necesidades:** presupuesto para transporte, estudios y salud, separado de los gustos.
 - **Mi dinero total:** dinero personal registrado; puede permanecer oculto para no mostrar el ahorro.
 - **Apartados:** dinero presupuestado para comida, servicios, respaldo de deudas, emergencia y salidas.
 - **Comida semanal:** cuánto necesitas y cuánto queda cubierto para esta semana.
 - **Pago posible:** estimación de lo que podrías dedicar a una deuda después de proteger determinadas reservas. No es una orden de pago.
 - **Ver estadísticas y otros datos:** abre detalles cuando quieras, sin llenar la pantalla principal.
 
-**Regla práctica:** antes de una salida, mira **Salidas y otros gastos**, no solo lo que tienes en el banco.
+**Regla práctica:** antes de una salida, mira **Para salidas esta semana**. El saldo bancario puede incluir ofrenda, servicios y otras reservas.
+
+## Ofrenda del 10 % y domingo
+
+Desde la actualización, cada ingreso nuevo libre reserva primero el **10 %**, redondeado al centavo por registro. No se recalculan ingresos anteriores ni se exige una ofrenda histórica. Un registro nuevo con fecha anterior al inicio mostrado tampoco genera reserva. El resto cubre comida semanal, necesidades y servicios, y luego se reparte entre cuotas, emergencia y salidas.
+
+La tarjeta muestra el próximo domingo, incluido hoy si es domingo. Si no entregas, la reserva pendiente pasa a las semanas siguientes. Abre la aplicación el domingo: **no hay notificaciones en segundo plano**.
+
+Después de hacer la entrega real, pulsa **Registrar lo que ya entregué**, verifica fecha e importe y guarda. Puedes registrar una entrega parcial. Solo entonces baja el saldo y se consume la reserva, sin descontarla de Salidas. Una entrega mayor que la reserva se muestra en negativo como adelanto y compensa reservas posteriores. Confirma siempre el efectivo real antes de entregar.
+
+Los préstamos, sus devoluciones, cobros de servicios, saldo inicial y reorganizaciones no generan ofrenda.
+
+## Ahorro recuperado y correcciones
+
+Si recuperas un ahorro externo que nunca registraste en esta app, usa **Recuperé ahorro externo (no es ingreso nuevo)**. Entra al saldo registrado y puede repartirse en apartados, pero no infla el ingreso del mes ni genera otro 10 %. No uses esta opción para dinero ya incluido en tu cuenta de emergencia: registra una retirada.
+
+Para un ingreso mal clasificado, entra en **Historial** y pulsa **Era ahorro** en ese registro. Tras confirmar, se conserva el importe y el saldo. Si tenía una reserva de ofrenda, se libera a emergencia dentro de su reparto original. Si fue incluido en una reorganización posterior, revisa el aviso de apartados y reorganiza solo después de conciliar.
+
+## Necesidades, límite de salidas y meta de ahorro
+
+En Ajustes puedes cambiar **Necesidades semanales**, **Tope semanal de salidas** y **Primera meta de emergencia**. Valores iniciales editables: $1 por semana, $5 por semana y $100, respectivamente. Son puntos de partida, no importes deducidos de tus movimientos. La comida conserva tus días y precio configurados.
+
+El tope incluye invitaciones, compras y los otros gastos que consumen Salidas. Se reinicia de lunes a domingo, pero no crea dinero ni aumenta el apartado. Las necesidades cubiertas no se vuelven a financiar por haberlas gastado esa misma semana. Si cambia tu costo real, ajusta el presupuesto.
+
+La meta muestra **dinero realmente transferido** a emergencia. El presupuesto de emergencia pendiente de transferir no se presenta como ahorro bancario. La app no compra inversiones ni mueve dinero.
 
 ## Comida semanal
 
@@ -88,7 +115,7 @@ También puedes registrar que sacaste dinero del fondo. El botón **ojo** permit
 - **Editar saldo:** actualiza con el estado de cuenta real.
 - **Deudas bancarias liquidadas:** cuando confirmes saldo $0, deja de aparecer como pendiente y queda archivada.
 
-La aplicación puede recomendar un **pago posible**, protegiendo semanas de comida y próximas suscripciones. Prioriza los préstamos personales en los abonos voluntarios; aun así, una deuda bancaria vencida puede ser urgente por intereses o recargos. Confirma siempre los importes con el acreedor.
+La aplicación puede recomendar un **pago posible**, protegiendo ofrenda, necesidades, emergencia, salidas, semanas de comida y próximas suscripciones. Prioriza los préstamos personales en los abonos voluntarios; aun así, una deuda bancaria vencida puede ser urgente por intereses o recargos. Confirma siempre los importes con el acreedor.
 
 ## Deudas → Amigos
 
@@ -145,7 +172,7 @@ Puedes filtrar por **Todos, Ingresos, Gastos, Pagos, Préstamos, Compartidos, Ah
 - **Saldo inicial:** úsalo para dinero anterior al primer registro, **una sola vez**.
 - **Reorganizar el saldo actual:** corrige distribución de apartados; no crea un ingreso.
 - **Guardar copia .json:** guarda tu información para recuperarla después.
-- **Exportar .csv:** permite revisar el historial en una hoja de cálculo.
+- **Exportar .csv:** permite revisar el historial en una hoja de cálculo. Añade dirección de préstamos y transferencias, si impactan el saldo, reservas por ingreso e ID. Los textos que parecen fórmulas se neutralizan al exportar.
 - **Restaurar copia:** reemplaza los datos existentes con los del respaldo seleccionado.
 - **Solicitar almacenamiento persistente:** ayuda a reducir limpiezas automáticas; no sustituye las copias.
 
@@ -165,5 +192,6 @@ Después de instalarla y abrirla correctamente una vez, puede usarse sin conexi�
 
 ---
 
-**Versión documentada:** MiDinero 3.7.  
-**Manual completo en Word:** `Manual_de_Uso_MiDinero_v3_7.docx`.
+**Versión documentada:** MiDinero 3.9.
+
+Antes de actualizar, exporta un respaldo JSON. Mantén la misma dirección web y el mismo navegador para conservar el almacenamiento. Consulta `docs/PROJECT_CONTEXT.md` para desarrollo, pruebas y reversión.
