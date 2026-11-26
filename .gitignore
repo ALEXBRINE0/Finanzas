@@ -1,0 +1,8 @@
+# Respaldos personales: no publicar información financiera.
+MiDinero_respaldo_*.json
+MiDinero_historial_*.csv
+browser-check/
+node_modules/
+.env
+.env.*
+!.env.example
