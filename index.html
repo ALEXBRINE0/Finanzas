@@ -62,7 +62,7 @@
 <header class="top"><div><div class="eyebrow" id="todayLabel">CONTROL PERSONAL</div><h1 class="head" id="pageTitle">MiDinero<span style="color:#405ee5">.</span></h1></div><div class="avatar" id="topIcon"></div></header>
 <section class="view active" id="view-home">
 <div class="hero daily-hero">
- <div class="light">Para salidas esta semana</div><div class="big" id="spendAccountBalance">$0.00</div>
+ <div class="light">Disponible esta semana</div><div class="big" id="spendAccountBalance">$0.00</div>
  <div class="balance-cells"><div><span>Saldo real de mi cuenta diaria</span><strong id="cashBalance">$0.00</strong><span id="checkingReserved" class="checking-reserved hidden"></span></div><div><span class="balance-heading">Fondo de emergencia <button type="button" class="savings-eye" data-toggle-savings aria-pressed="false" aria-label="Mostrar ahorro de emergencia" title="Mostrar mi ahorro de emergencia"></button></span><strong id="savedAccountBalance" class="privacy-mask">••••••</strong></div></div>
  <span id="statusDot" class="hidden">Actualizado</span>
 </div>
@@ -450,9 +450,9 @@ function displayHome(){
  {k:'services',name:'Servicios',style:'mint'},
  {k:'debt',name:'Deudas',style:'orange'},
  {k:'emergency',name:'Emergencia',style:'blue'},
- {k:'fun',name:'Salidas',style:'pink'}];
+ {k:'fun',name:'Salidas: apartado acumulado',style:'pink'}];
  $('envelopes').innerHTML=fields.map(z=>{const val=b[z.k]||0,sv=z.k==='emergency'?savingsBalance():0,canSave=z.k==='emergency'?emergencyToTransfer():0;
- return `<div class="bucket-row"><span class="bucket-dot ${z.style}"></span><span class="bucket-title">${z.name}</span><b class="${val<0?'danger-text':''} ${z.k==='emergency'&&!savingsVisible?'privacy-mask':''}">${z.k==='emergency'?guardedAmount(val):(val<0?'-':'')+dol(val)}</b>${z.k==='emergency'?`<span class="bucket-sub">En cuenta: ${guardedAmount(sv)} · Falta transferir: ${guardedAmount(Math.max(0,val-sv))}</span><button type="button" class="save-chip" data-save-open="deposit" ${canSave<=0?'disabled':''}>Transferir</button>`:''}</div>`}).join('');
+ return `<div class="bucket-row"><span class="bucket-dot ${z.style}"></span><span class="bucket-title">${z.name}</span><b class="${val<0?'danger-text':''} ${z.k==='emergency'&&!savingsVisible?'privacy-mask':''}">${z.k==='emergency'?guardedAmount(val):(val<0?'-':'')+dol(val)}</b>${z.k==='fun'?'<span class="bucket-sub">El disponible semanal de arriba puede ser menor.</span>':''}${z.k==='essentials'?'<span class="bucket-sub">Transporte y otros gastos esenciales. La comida va aparte.</span>':''}${z.k==='emergency'?`<span class="bucket-sub">En cuenta: ${guardedAmount(sv)} · Falta transferir: ${guardedAmount(Math.max(0,val-sv))}</span><button type="button" class="save-chip" data-save-open="deposit" ${canSave<=0?'disabled':''}>Transferir</button>`:''}</div>`}).join('');
  const assigned=Object.values(b).reduce((a,v)=>a+v,0),unassigned=t.cash-assigned;
  $('unassignedStatus').textContent=(Math.abs(unassigned)>1?'Apartados por ajustar: '+(unassigned<0?'-':'')+dol(unassigned)+'. Revisa Ajustes.':'')+(b.fun<0?' · Exceso en salidas: '+dol(-b.fun):'')+(checking<0?' · Revisa tu dinero fuera de ahorros.':'');
  const keys=Object.keys(t.by).sort((a,b)=>t.by[b]-t.by[a]),max=Math.max(1,...Object.values(t.by));

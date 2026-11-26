@@ -26,7 +26,7 @@ const server = http.createServer(async (req, res) => {
     page.on('pageerror', e => errors.push(e.message));
     page.on('dialog', d => d.accept());
     await page.goto(`http://127.0.0.1:${server.address().port}`);
-    await page.locator('#personalPlan').getByText('Para salidas esta semana').waitFor();
+    await page.locator('#personalPlan').getByText('Disponible esta semana').waitFor();
     // Configuración sintética, nunca información financiera del usuario.
     await page.evaluate(async () => { state.services = []; state.cycles = []; await persist(); });
     async function entry(mode, amount, category) {
@@ -54,7 +54,7 @@ const server = http.createServer(async (req, res) => {
     assert.equal(await page.evaluate(() => envelopeTotals().essentials), 0);
     assert.equal(await page.evaluate(() => spendingRoom().spent), 300);
     await page.reload();
-    await page.locator('#personalPlan').getByText('Para salidas esta semana').waitFor();
+    await page.locator('#personalPlan').getByText('Disponible esta semana').waitFor();
     assert.equal(await page.evaluate(() => offeringOutstanding()), 400);
     assert.equal(await page.evaluate(() => state.movements.length), 8);
     // Corrección histórica conserva saldo.
@@ -120,12 +120,12 @@ const server = http.createServer(async (req, res) => {
     await page.waitForFunction(() => !!navigator.serviceWorker.controller);
     await context.setOffline(true);
     await page.reload();
-    await page.locator('#personalPlan').getByText('Para salidas esta semana').waitFor();
+    await page.locator('#personalPlan').getByText('Disponible esta semana').waitFor();
     assert.equal(await page.evaluate(() => offeringOutstanding()), 400);
     await entry('income', '10');
     assert.equal(await page.evaluate(() => offeringOutstanding()), 500);
     await page.reload();
-    await page.locator('#personalPlan').getByText('Para salidas esta semana').waitFor();
+    await page.locator('#personalPlan').getByText('Disponible esta semana').waitFor();
     assert.equal(await page.evaluate(() => offeringOutstanding()), 500);
     assert.deepEqual(errors, []);
     console.log('PASS: registro, ofrenda parcial, ahorro recuperado, corrección, persistencia, ajustes, CSV seguro, respaldo/restauración, 15 vistas responsivas y registro offline.');

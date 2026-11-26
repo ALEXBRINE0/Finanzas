@@ -40,7 +40,8 @@ function spendingRoom(date = sd()) {
 }
 function displayPersonalPlan() {
   const p = spendingRoom(), pending = Math.max(0, offeringOutstanding()), sunday = weekRange(sd()).end;
-  $('personalPlan').innerHTML = `<div class="card"><div class="hrow"><b>Para salidas esta semana</b><strong class="${p.available ? 'positive' : 'danger-text'}">${dol(p.available)}</strong></div>
+  $('personalPlan').innerHTML = `<div class="card"><div class="hrow"><b>Disponible esta semana</b><strong class="${p.available ? 'positive' : 'danger-text'}">${dol(p.available)}</strong></div>
+    <p class="tip">Para salidas y gustos. El apartado acumulado puede ser mayor: se aplica el menor entre ese apartado, el límite semanal restante y el efectivo después de proteger las otras reservas.</p>
     <p class="tip">Gastado en salidas y otros gustos: ${dol(p.spent)} de un tope de ${dol(p.limit)}. El disponible también respeta tus apartados y el efectivo propio.</p>
     ${p.foodNeed || p.essentialsNeed ? `<p class="tip danger-text">Falta cubrir esta semana: comida ${dol(p.foodNeed)} · necesidades ${dol(p.essentialsNeed)}.</p>` : ''}
     <p class="tip">Invitar es opcional. Si no alcanza este apartado, cada quien paga lo suyo. Espera 24 horas antes de una compra no necesaria.</p>

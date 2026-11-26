@@ -59,12 +59,12 @@ En **Registrar → Pagué una cuota**, elige la obligación, cantidad y quién a
 - **Ofrenda:** reserva pendiente de entregar, no dinero libre.
 - **Necesidades:** presupuesto para transporte, estudios y salud, separado de los gustos.
 - **Mi dinero total:** dinero personal registrado; puede permanecer oculto para no mostrar el ahorro.
-- **Apartados:** dinero presupuestado para comida, servicios, respaldo de deudas, emergencia y salidas.
+- **Apartados:** dinero presupuestado para comida, servicios, respaldo de deudas, emergencia y salidas. **Salidas: apartado acumulado** muestra el presupuesto acumulado; puede superar el disponible semanal porque este aplica el tope y protege las demás reservas.
 - **Comida semanal:** cuánto necesitas y cuánto queda cubierto para esta semana.
 - **Pago posible:** estimación de lo que podrías dedicar a una deuda después de proteger determinadas reservas. No es una orden de pago.
 - **Ver estadísticas y otros datos:** abre detalles cuando quieras, sin llenar la pantalla principal.
 
-**Regla práctica:** antes de una salida, mira **Para salidas esta semana**. El saldo bancario puede incluir ofrenda, servicios y otras reservas.
+**Regla práctica:** antes de una salida, mira **Disponible esta semana**. El saldo bancario puede incluir ofrenda, servicios y otras reservas.
 
 ## Ofrenda del 10 % y domingo
 
